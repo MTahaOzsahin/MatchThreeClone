@@ -5,6 +5,22 @@ using UnityEngine;
 
 public class GamePiece : MonoBehaviour
 {
+
+    public enum MatchValue
+    {
+        Yellow,
+        Blue,
+        Magenta,
+        Indigo,
+        Green,
+        Teal,
+        Red,
+        Cyan,
+        Wild
+    }
+
+    public MatchValue matchValue;
+    
     public int xIndex;
     public int yIndex;
 
