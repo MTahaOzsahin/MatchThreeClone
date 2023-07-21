@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GamePiece : MonoBehaviour
@@ -24,12 +22,12 @@ public class GamePiece : MonoBehaviour
     public int xIndex;
     public int yIndex;
 
-    private bool _isMoving;
-    private Board _board;
+    private bool isMoving;
+    private Board board;
 
-    public void Init(Board board)
+    public void Init(Board mBoard)
     {
-        _board = board;
+        board = mBoard;
     }
     
     public void SetCoordinates(int x,int y)
@@ -38,22 +36,9 @@ public class GamePiece : MonoBehaviour
         yIndex = y;
     }
 
-    private void Update()
-    {
-        // if (Input.GetKeyDown(KeyCode.RightArrow))
-        // {
-        //     Move(Mathf.RoundToInt(transform.position.x + 1), Mathf.RoundToInt(transform.position.y), 0.3f);
-        // }
-        //
-        // if (Input.GetKeyDown(KeyCode.LeftArrow))
-        // {
-        //     Move(Mathf.RoundToInt(transform.position.x - 1), Mathf.RoundToInt(transform.position.y), 0.3f);
-        // }
-    }
-
     public void Move(int destX, int destY,float timeToMove)
     {
-        if (!_isMoving) 
+        if (!isMoving) 
             StartCoroutine(MoveRoutine(new Vector3(destX, destY, 0), timeToMove));
     }
 
@@ -62,15 +47,15 @@ public class GamePiece : MonoBehaviour
         var startPosition = transform.position;
         var reachedDestination = false;
         var elapsedTime = 0f;
-        _isMoving = true;
+        isMoving = true;
         while (!reachedDestination)
         {
             if (Vector3.Distance(transform.position,destination)< 0.01f)
             {
                 reachedDestination = true;
-                if (_board != null)
+                if (board != null)
                 {
-                    _board.PlaceGamePiece(this,Mathf.RoundToInt(destination.x),Mathf.RoundToInt(destination.y));
+                    board.PlaceGamePiece(this,Mathf.RoundToInt(destination.x),Mathf.RoundToInt(destination.y));
                 }
             }
 
@@ -81,6 +66,6 @@ public class GamePiece : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        _isMoving = false;
+        isMoving = false;
     }
 }
