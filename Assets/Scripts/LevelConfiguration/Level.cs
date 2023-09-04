@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using BoardScripts;
+using Collection;
+using LevelGoals;
+using UnityEngine;
 
 namespace LevelConfiguration
 {
